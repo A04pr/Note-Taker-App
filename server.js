@@ -9,11 +9,11 @@ const PORT = process.env.PORT || 3000;
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use(express.static('public'));
+app.use(express.static('docs'));
 
 app.get('/notes', (req, res) => {
   try {
-    res.sendFile(path.join(__dirname, 'public', 'notes.html'));
+    res.sendFile(path.join(__dirname, 'docs', 'notes.html'));
   } catch (error) {
     console.error('Error serving notes.html:', error);
     res.status(500).send('Internal Server Error');
@@ -22,7 +22,7 @@ app.get('/notes', (req, res) => {
 
 app.get('*', (req, res) => {
   try {
-    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+    res.sendFile(path.join(__dirname, 'docs', 'index.html'));
   } catch (error) {
     console.error('Error serving index.html:', error);
     res.status(500).send('Internal Server Error');
